@@ -1,6 +1,6 @@
 ## Install kind on linux:
 
-"""
+'''
 
 #!/bin/bash
 
@@ -14,5 +14,5 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 
 echo "kind & kubectl Successfully Installed!"
 
-"""
+'''
 

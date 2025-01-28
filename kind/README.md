@@ -16,3 +16,26 @@ echo "kind & kubectl Successfully Installed!"
 
 ```
 
+## Multi-node clusters
+
+You can also have a cluster with multiple control-plane & worker nodes, create a config file.
+
+```
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  image: kindest/node:v1.32.1
+- role: worker
+  image: kindest/node:v1.32.1
+- role: worker
+  image: kindest/node:v1.32.1
+- role: worker
+  image: kindest/node:v1.32.1
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: tcp
+
+```

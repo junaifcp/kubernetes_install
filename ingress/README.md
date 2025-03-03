@@ -21,15 +21,12 @@ spec:
         app: app1
     spec:
       containers:
-      - name: nginx
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
-        # Add custom content
-        command: ["/bin/sh", "-c"]
+      - name: app1
+        image: hashicorp/http-echo
         args:
-          - echo "<h1>App 1 - Nginx</h1>" > /usr/share/nginx/html/index.html;
-            exec nginx -g 'daemon off;'
+        - "-text=Hello from App 1"
+        ports:
+        - containerPort: 5678
 ---
 apiVersion: v1
 kind: Service
@@ -40,7 +37,7 @@ spec:
     app: app1
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 5678
 ```
 
 ### app2.yml:
@@ -60,15 +57,12 @@ spec:
         app: app2
     spec:
       containers:
-      - name: nginx
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
-        # Add custom content
-        command: ["/bin/sh", "-c"]
+      - name: app2
+        image: hashicorp/http-echo
         args:
-          - echo "<h1>App 2 - Nginx</h1>" > /usr/share/nginx/html/index.html;
-            exec nginx -g 'daemon off;'
+        - "-text=Hello from App 2"
+        ports:
+        - containerPort: 5678
 ---
 apiVersion: v1
 kind: Service
@@ -79,7 +73,7 @@ spec:
     app: app2
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 5678
 ```
 
 ### Apply the configurations:

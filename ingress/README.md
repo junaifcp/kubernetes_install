@@ -88,7 +88,7 @@ kubectl apply -f app1.yaml -f app2.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-demo-ingress
+  name: demo-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
